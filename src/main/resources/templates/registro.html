@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Registro de usuarios</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+
+    <style>
+        .bg-gradient-primary {
+            background-color: #6c757d;
+            background-image: linear-gradient(180deg, #6c757d 10%, #343a40 100%);
+            background-size: cover;
+        }
+        .bg-register-image {
+            background: url('https://i.pinimg.com/736x/c9/96/03/c9960378fc9fe501f6a24c7a085fd11c.jpg');
+            background-position: center;
+            background-size: contain;
+            background-repeat: no-repeat;
+            max-width: 500px;
+            max-height: 500px;
+            margin-top: 20px; /* Centrar la imagen */
+        }
+        .text-gray-900 {
+            color: #3a3b45 !important;
+        }
+        .form-control-user {
+            border-radius: 10rem;
+            padding: 0.75rem 1rem;
+        }
+        .btn-user {
+            border-radius: 10rem;
+            padding: 0.5rem 1rem;
+            font-size: 0.8rem;
+        }
+        .btn-black {
+            background-color: #000;
+            color: #fff;
+        }
+        .btn-black:hover {
+            background-color: #666666;
+        }
+        .back-to-index {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.25rem;
+        }
+    </style>
+</head>
+<body class="bg-gradient-primary d-flex align-items-center justify-content-center" style="height: 100vh;">
+
+<a th:href="@{/index2}" class="back-to-index btn btn-link">Volver al inicio</a>
+
+<div class="container">
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block bg-register-image"></div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Regístrate</h1>
+                                </div>
+                                <div th:if="${param.exito}">
+                                    <div class="alert alert-info">Se ha registrado exitosamente en la aplicación</div>
+                                </div>
+                                <form class="user" th:action="@{/registro}" method="post" th:object="${usuario}">
+                                    <div class="mb-3">
+                                        <label for="nombre" class="form-label">Nombre:</label>
+                                        <input id="nombre" type="text" class="form-control form-control-user" th:field="*{nombre}" required autofocus>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="apellido" class="form-label">Apellido:</label>
+                                        <input id="apellido" type="text" class="form-control form-control-user" th:field="*{apellido}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="email" class="form-label">Email:</label>
+                                        <input id="email" type="email" class="form-control form-control-user" th:field="*{email}" required>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="password" class="form-label">Password:</label>
+                                        <input type="password" id="password" class="form-control form-control-user" th:field="*{password}" required>
+                                    </div>
+                                    <div class="d-grid">
+                                        <button type="submit" class="btn btn-success btn-user">Registrar</button>
+                                    </div>
+                                </form>
+                                <div class="text-center mt-3">
+                                    <span>Si ya estás registrado, <a th:href="@{/login}">inicia sesión aquí</a></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
+
